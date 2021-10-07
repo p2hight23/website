@@ -1,0 +1,123 @@
+<html>
+<head>
+<script language="JavaScript">
+
+
+var clipLength = [100, 100, 100, 100, 100, 100];
+
+var clipList = ["sounds/tarune.mp3",
+				"sounds/sjowgren.mp3",
+				"sounds/joji1.mp3",
+				"sounds/currentJoys.mp3",
+				"sounds/joji2.mp3",
+				"sounds/bien.mp3"]
+
+
+
+var picList = ["images/album/slide1.jpg",
+			   "images/album/slide2.jpg",
+			   "images/album/slide3.jpg",
+			   "images/album/slide4.jpg",
+			   "images/album/slide5.jpg",
+			   "images/album/slide6.jpg"]
+			   
+var counter = 0
+var timer;
+var autoStart = false;
+
+			   
+
+
+
+function next ()
+{
+
+	document.getElementById("display").src = picList[counter];
+
+	document.getElementById("player").src = clipList[counter];
+	
+	document.getElementById("player").play();
+	
+	increment ();
+
+}
+
+function run ()
+{
+	if( autoStart == false) //player isn't running 
+	{
+		autoStart = true;
+		document.getElementById("runButton").value = "Pause"
+	
+	}
+	else
+	{
+		autoStart = false;
+		document.getElementById("runButton").value = "Run Slideshow"
+	}
+	autoRun();
+	
+}	
+
+
+function autoRun()
+
+{
+	if( autoStart == true)// runs slideshow automatically 
+	{	
+		next ();
+	
+		timer = setTimeout ("run()", 5000);
+	}
+	else // stops the slideshow from running automatically 
+	{
+		clearTimeout (timer);
+	
+	}
+}
+
+
+function increment()
+{
+	if (counter == picList.length -1)
+		counter = 0;
+	else 
+		counter++;
+
+}
+
+</script>
+</head>
+
+
+<body>
+<center>
+
+
+<h1> Songs on repeat </h1>
+
+Click here to <a href="index.html">return to my homepage </a><br/>
+
+
+<br/><br/>
+<input type = "button" value="Next Picture" onClick="next()">
+<input type = "button" value="Run Slideshow" onClick="run()" id="runButton">
+
+
+<br/><br/>
+<img src= "images/album/slide1.jpg" id="display"/>
+
+
+<audio id = "player"></audio>
+
+<h2> List of songs played </h2>
+1. Met a girl - Tarune <br/>
+2. Seventeen - Sjowgren<br/>
+3. WANTED U - Joji<br/>
+4. A different age - Current Joys<br/>
+5. Mr. Hollywood - Joji<br/>
+6. Last Man Standing - Bien 
+</center>
+
+</body>
+</html>
